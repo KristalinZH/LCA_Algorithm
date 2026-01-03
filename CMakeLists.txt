@@ -13,11 +13,14 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
-add_library(LCA
-    src/LCA.cpp
+add_library(LCA INTERFACE)
+
+target_include_directories(LCA
+    INTERFACE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_include_directories(LCA PUBLIC src)
+target_compile_features(LCA INTERFACE cxx_std_11)
 
 add_executable(LCATESTS
     tests/LCA_tests.cpp
